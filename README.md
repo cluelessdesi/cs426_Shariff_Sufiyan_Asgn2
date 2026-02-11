@@ -1,6 +1,7 @@
 # cs426_hackateers
 #02/10/26 - Push by Ivan P.
 >Placed PC Model for Level Design
+[Link to model here](https://www.cgtrader.com/items/3536508/download-page)
 
 # 02/08/26 - Push by Ivan P.
 > TLDR; Added base networking game, need to build on level design and functionality of getting questions
