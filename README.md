@@ -1,4 +1,7 @@
 # cs426_hackateers
+#02/10/26 - Push by Ivan P.
+>Placed PC Model for Level Design
+
 # 02/08/26 - Push by Ivan P.
 > TLDR; Added base networking game, need to build on level design and functionality of getting questions
 - Controls
