@@ -7,6 +7,12 @@ using Unity.Netcode;
 public class Target : NetworkBehaviour
 {
 
+    private List<string> hints = new List<string>(){
+
+        "A GPU (Graphics Processing Unit) is a specialized processor designed to handle many calculations at the same time.",
+        "More hints to come :p",
+        "Just want functionality for now"
+    };
     //this method is called whenever a collision is detected
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,7 +32,11 @@ public class Target : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void DestroyTargetServerRpc()
     {
-        ShowHitClientRpc("Hint here");
+        // get a random hint
+        int index = Random.Range(0, hints.Count);
+        string selected = hints[index];
+        ShowHitClientRpc(selected);
+        hints.RemoveAt(index);
         //despawn
         GetComponent<NetworkObject>().Despawn(true);
         //after collision is detected destroy the gameobject
