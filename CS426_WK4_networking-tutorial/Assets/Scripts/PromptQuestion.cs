@@ -23,7 +23,7 @@ public class Platform : NetworkBehaviour
         // printing if collision is detected on the console
         Debug.Log("Collision Detected");
         // we want to find who hit
-        var hitNetObj = GetComponent<Collider>().gameObject.GetComponentInParent<NetworkObject>();
+        var hitNetObj = collision.GetComponentInParent<NetworkObject>();
         ulong clientId = hitNetObj.OwnerClientId;
         // if the collision is detected destroy the object
         ShowQuestionToClient(clientId);
@@ -35,7 +35,7 @@ public class Platform : NetworkBehaviour
         // printing if collision is detected on the console
         Debug.Log("Collision Detected");
         // we want to find who hit
-        var hitNetObj = GetComponent<Collider>().gameObject.GetComponentInParent<NetworkObject>();
+        var hitNetObj = collision.GetComponentInParent<NetworkObject>();
         ulong clientId = hitNetObj.OwnerClientId;
         // if the collision is detected destroy the object
         HideQuestionClientRpc(new ClientRpcParams
