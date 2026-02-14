@@ -1,34 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// adding namespaces
 using Unity.Netcode;
 
 public class Target : NetworkBehaviour
 {
 
-    private List<string> hints = new List<string>(){
+    private static List<string> hints = new List<string>(){
 
         "A GPU (Graphics Processing Unit) is a specialized processor designed to handle many calculations at the same time.",
         "More hints to come :p",
         "Just want functionality for now"
     };
-    //this method is called whenever a collision is detected
+
     private void OnCollisionEnter(Collision collision)
     {
 
-        // printing if collision is detected on the console
+
         Debug.Log("Collision Detected");
         // we want to find who hit
         NetworkObject hitNetObj = collision.gameObject.GetComponent<NetworkObject>();
-        // if the collision is detected destroy the object
+ 
         DestroyTargetServerRpc();
     }
 
-    // client can not spawn or destroy objects
-    // so we need to use ServerRpc
-    // we also need to add RequireOwnership = false
-    // because we want to destroy the object even if the client is not the owner
+    public int TargetsLeft()
+    {
+        return hints.Count;
+    }
+
+
+
     [ServerRpc(RequireOwnership = false)]
     public void DestroyTargetServerRpc()
     {
@@ -39,7 +41,6 @@ public class Target : NetworkBehaviour
         hints.RemoveAt(index);
         //despawn
         GetComponent<NetworkObject>().Despawn(true);
-        //after collision is detected destroy the gameobject
         Destroy(gameObject);
     }
 
